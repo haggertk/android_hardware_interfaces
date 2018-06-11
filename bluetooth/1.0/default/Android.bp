@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-cc_library_shared {
-    name: "android.hardware.bluetooth@1.0-impl",
+cc_defaults {
+    name: "bt_1_0_impl_defaults",
     defaults: ["hidl_defaults"],
     vendor: true,
     relative_install_path: "hw",
@@ -36,6 +36,19 @@ cc_library_shared {
     static_libs: [
         "android.hardware.bluetooth-async",
         "android.hardware.bluetooth-hci",
+    ],
+}
+
+cc_library_shared {
+    name: "android.hardware.bluetooth@1.0-impl",
+    defaults: ["bt_1_0_impl_defaults"],
+}
+
+cc_library_shared {
+    name: "android.hardware.bluetooth@1.0-impl.sco_cfg",
+    defaults: ["bt_1_0_impl_defaults"],
+    cflags: [
+        "-DCALL_BT_VND_OP_SCO_CFG",
     ],
 }
 
